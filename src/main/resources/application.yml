@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/warehouse_data
+    username: postgres
+    password: root123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  data:
+    rest:
+      base-path: "/api"
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      enabled: true
+debug: true
+server:
+  port: 8081
