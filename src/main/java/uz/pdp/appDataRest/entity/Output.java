@@ -5,38 +5,36 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 import uz.pdp.appDataRest.utils.CodeGeneratorUtil;
 
-import java.util.Set;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
-
+public class Output {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
+    private Timestamp date = Timestamp.valueOf(LocalDateTime.now());
 
-    @Column(nullable = false)
-    private String lastName;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Warehouse warehouse;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Currency currency;
     @Column(nullable = false, unique = true)
-    private String phoneNumber;
+    private String factureNumber;
 
     private String code = CodeGeneratorUtil.generateRandomCode();
 
-    @Column(nullable = false)
-    private String password;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Client client;
 
-    private boolean active = true;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Warehouse> warehouses;
 }

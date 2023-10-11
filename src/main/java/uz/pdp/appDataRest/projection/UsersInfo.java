@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 import uz.pdp.appDataRest.entity.User;
+import uz.pdp.appDataRest.entity.Warehouse;
+
+import java.util.Set;
 
 @Projection(types = User.class)
 public interface UsersInfo {
@@ -15,4 +18,5 @@ public interface UsersInfo {
     String getCode();
     String getPassword();
     boolean isActive();
+    Set<Warehouse> getWarehouses();
 }
